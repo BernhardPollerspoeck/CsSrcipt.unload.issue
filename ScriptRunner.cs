@@ -24,6 +24,7 @@ internal class ScriptRunner
 		var script = """
 			public int Add(int x, int y)
 			{
+				Console.WriteLine(this.GetType().Assembly.FullName);
 				return x + y;
 			}
 			""";
@@ -38,7 +39,6 @@ internal class ScriptRunner
 		var result = runnable.Add(1, 2);
 		Console.WriteLine($"Result: {result}");
 
-		Thread.Sleep(1000);
 
 		//TODO: unload via context
 		//var asm = runnable.GetType().Assembly;
@@ -48,8 +48,6 @@ internal class ScriptRunner
 		//TODO: unload via assembly
 		var asm2 = runnable.GetType().Assembly;
 		asm2.Unload();
-
-		Thread.Sleep(10000);
 
 	}
 

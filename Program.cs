@@ -21,8 +21,8 @@ while (runner.Runner.ThreadState != ThreadState.Stopped)
 
 runner = null;
 
-
-Thread.Sleep(10000);
+LogAssemblyCount();
+GC.Collect();
 LogAssemblyCount();
 
 
@@ -32,6 +32,7 @@ Console.WriteLine("Hello, World!");
 static void LogAssemblyCount()
 {
 	Console.WriteLine($"{DateTime.Now}  {AppDomain.CurrentDomain.GetAssemblies().Length}");
+	Console.WriteLine($"  script assembly > {AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(x => x.FullName.Contains("#1-0"))}");
 }
 
 
